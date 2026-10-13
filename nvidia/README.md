@@ -51,7 +51,7 @@ cat /sys/bus/pci/devices/0000:01:00.0/power/runtime_status   # "suspended" when 
 
 ## Notes
 
-- A Secure Boot + `lockdown=integrity` system refuses unsigned DKMS modules — remove the `lockdown=integrity` token from the kernel cmdline (or sign the modules with a key the kernel trusts), or the driver will not load.
+- A Secure Boot + `lockdown=integrity` system refuses unsigned DKMS modules — remove the `lockdown=integrity` token from the kernel cmdline, or the driver will not load. Signing the modules with your Secure Boot `db` key does **not** help: the kernel verifies module signatures only against MOK keys (`.machine`), never `db` keys (`.platform`), so a `db`-signed out-of-tree module still loads as *unsigned*.
 - The compositor can hold the dGPU open, leaving it `active` for a whole session rather than `suspended`.
 
 More: [`NVIDIA Optimus`](https://wiki.archlinux.org/title/NVIDIA_Optimus)
