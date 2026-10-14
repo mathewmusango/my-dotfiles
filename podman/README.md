@@ -36,4 +36,33 @@ systemctl --user is-active podman.socket
 - Files a container writes can land owned by a subordinate UID; reach them with `podman unshare`.
 - Images are cached locally after the first pull, so a module's first run is the slow one.
 
+## Storage on btrfs / a hardened host
+
+Rootless podman keeps images and layers under `~/.local/share/containers/storage`. On a
+hardened or btrfs host that is often the wrong place, so relocate it:
+
+- **`$HOME` mounted `nosuid,nodev` breaks it** — container layers need device nodes and
+  images rely on setuid binaries. Point the store at an unhardened subvolume via
+  `~/.config/containers/storage.conf`:
+
+  ```toml
+  [storage]
+  driver    = "overlay"
+  graphroot = "/srv/containers/$UID"          # literal UID on disk, e.g. .../1000
+
+  [storage.options.overlay]
+  mount_program = "/usr/bin/fuse-overlayfs"    # btrfs: the userspace overlay
+  ```
+
+- **Changing the graphroot starts an empty store** — and copying the old one across
+  *fails*: libpod's DB embeds absolute paths, so podman refuses with
+  `database configuration mismatch`. Start fresh (`podman system reset --force`) rather
+  than copying.
+- **Short image names need `/etc/containers/registries.conf`** (from `containers-common`,
+  `unqualified-search-registries = ["docker.io"]`). If it is missing podman errors with
+  *"short-name … did not resolve … no containers-registries.conf"* — reinstall
+  `containers-common`, or use fully-qualified names (`docker.io/…`).
+- **btrfs image builds** can fail with `userxattr: no such device`; fix it with
+  `mount -o remount,userxattr <fs>` on the build-context filesystem (persist in fstab).
+
 Upstream: <https://podman.io/docs>

@@ -1,0 +1,48 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+#
+# Reference copy of this box's /etc/fstab — see README.md. Do not blind-copy onto
+# another machine: the UUIDs are host-specific.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+
+# /dev/nvme0n1p1
+UUID=<UUID>          /boot                   vfat    rw,noatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro,nosuid,nodev,noexec	0 2
+#
+# /dev/mapper/system
+UUID=<UUID>	/         		btrfs	rw,noatime,ssd,space_cache=v2,compress=zstd:3,subvol=/@	  	  					0 0
+
+# /dev/mapper/system
+UUID=<UUID>	/home     		btrfs	rw,noatime,ssd,space_cache=v2,compress=zstd:3,nosuid,nodev,subvol=/@home				0 0
+
+# /dev/mapper/system
+UUID=<UUID>  	/srv		        btrfs  	rw,noatime,ssd,space_cache=v2,compress=zstd:3,subvol=/@srv		  				0 0
+UUID=<UUID> 	/srv/myinfra/cache  	btrfs  	rw,noatime,ssd,space_cache=v2,nosuid,nodev,subvol=/@cache	  	  				0 0
+UUID=<UUID>  	/srv/myinfra/vms        btrfs  	rw,noatime,ssd,space_cache=v2,nosuid,nodev,subvol=/@vms	  	  					0 0
+UUID=<UUID>  	/srv/myinfra/containers btrfs  	rw,noatime,ssd,space_cache=v2,compress=zstd:1,nosuid,nodev,subvol=/@containers 				0 0
+UUID=<UUID>	/srv/myinfra/podman  	btrfs  	rw,noatime,ssd,space_cache=v2,subvol=/@podman	  	  	  					0 0
+
+# /dev/mapper/system
+UUID=<UUID>	/var      		btrfs	rw,noatime,ssd,space_cache=v2,compress=zstd:3,subvol=/@var		  				0 0
+
+# /dev/mapper/system
+UUID=<UUID>	/var/lib  		btrfs	rw,noatime,ssd,space_cache=v2,compress=zstd:3,subvol=/@var_lib	  					0 0
+UUID=<UUID>  	/var/lib/portables	btrfs  	rw,noatime,ssd,space_cache=v2,compress=zstd:3,nosuid,nodev,subvol=/@var_lib_portables			0 0
+UUID=<UUID>  	/var/lib/machines	btrfs  	rw,noatime,ssd,space_cache=v2,compress=zstd:3,nosuid,nodev,subvol=/@var_lib_machines			0 0
+
+# /dev/mapper/system
+UUID=<UUID>	/var/log  		btrfs	rw,noatime,ssd,space_cache=v2,compress=zstd:3,nosuid,nodev,noexec,subvol=/@var_log			0 0
+UUID=<UUID>	/var/log/audit    	btrfs  	rw,noatime,ssd,space_cache=v2,compress=zstd:3,nosuid,nodev,noexec,subvol=/@var_log_audit		0 0
+
+
+# /dev/mapper/system
+UUID=<UUID>	/var/tmp  		btrfs	rw,noatime,ssd,space_cache=v2,compress=zstd:3,nosuid,nodev,noexec,subvol=/@var_tmp			0 0
+
+# /dev/mapper/system
+UUID=<UUID>  	/swap  			btrfs	rw,noatime,ssd,space_cache=v2,subvol=/@swap  	  	  	  					0 0
+
+# Btrfs swapfile
+/swap/swapfile  				none  			swap  	defaults,pri=10  	 0 0
+
+# /dev/shm
+tmpfs  						/dev/shm  		tmpfs	rw,nosuid,nodev,noexec	  	  	  	  	  	  					0 0

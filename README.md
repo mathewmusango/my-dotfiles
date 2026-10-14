@@ -16,6 +16,7 @@ my-dotfiles/
   ├── .githooks/            # pre-commit hook -> local checks
   ├── .github/              # checks.yml, codeql.yml, CODEOWNERS, dependabot
   ├── aws/                  # AWS CLI v2 via a pinned podman image
+  ├── btrfs/                # LUKS + subvolumes layout, /etc/fstab reference
   ├── containers/checks/    # podman compose — one service per check
   ├── fastfetch/            # fastfetch designs: 01-minimal, 02-tree
   ├── git/                  # git itself (install notes)
@@ -42,6 +43,7 @@ my-dotfiles/
 | Module | Installs to | Installer |
 |---|---|---|
 | [`aws/`](aws/README.md) | `~/.local/bin/aws` | `./install.sh` |
+| [`btrfs/`](btrfs/README.md) | — reference: subvolume layout + `/etc/fstab` | — |
 | [`fastfetch/`](fastfetch/README.md) | `~/.config/fastfetch/config.jsonc` | `./replace.sh <design>` |
 | [`git/`](git/README.md) | — install notes only | — |
 | [`gpg/`](gpg/README.md) | `~/.gnupg/{common,gpg-agent}.conf` (overwrites) | `./install.sh` |
