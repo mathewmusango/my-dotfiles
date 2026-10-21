@@ -46,10 +46,6 @@
             "integration_id": 15368
           },
           {
-            "context": "secrets / gitleaks",
-            "integration_id": 15368
-          },
-          {
             "context": "yaml / actionlint",
             "integration_id": 15368
           },
