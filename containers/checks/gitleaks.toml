@@ -1,0 +1,11 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "local, gitignored key material that is not part of the repository"
+paths = [
+  '''\.pem$''',
+  '''\.key$''',
+  '''public-keys\.d/''',
+  '''private-keys-v1\.d/''',
+]

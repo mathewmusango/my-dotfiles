@@ -46,7 +46,7 @@ for arg in "$@"; do
   esac
 done
 
-ALL="jsonc shell python yaml yaml-syntax"
+ALL="jsonc shell python yaml yaml-syntax gitleaks"
 if [ -z "$SURFACES" ]; then
   SURFACES="$ALL"
 fi
@@ -81,6 +81,7 @@ surface_glob() {
 surface_touched() {
   # $1 = surface name; reads $CHANGED on stdin
   case "$1" in
+    gitleaks)         return 0 ;;
     jsonc)            grep -qE '\.jsonc$|scripts/checks/jsonc\.py$' || return 1 ;;
     shell)            grep -qE '\.sh$|(^|/)\.githooks/' || return 1 ;;
     python)           grep -q '\.py$' || return 1 ;;
