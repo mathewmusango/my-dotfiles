@@ -2,7 +2,7 @@
 
 **Status:** 🟢 applied — live on `refs/heads/main` · **Config:** [`main.json`](main.json)
 
-**Purpose.** `main` binds every actor: pull requests only, one approval, squash only, seven shared-check contexts, no bypass.
+**Purpose.** `main` binds every actor: pull requests only, one approval, squash only, six shared-check contexts, no bypass.
 
 | Field | Value |
 | --- | --- |
@@ -10,7 +10,7 @@
 | Merge methods | `squash` only |
 | Approvals | 1 · stale reviews dismissed on push · review threads resolved · an extra approval for unattributed changes |
 | Bypass actors | none |
-| Required checks | the seven below, strict |
+| Required checks | the six below, strict |
 | Also | `creation` · `deletion` · `non_fast_forward` · `required_signatures` · `code_scanning` (`high_or_higher`, analysis `errors`) |
 
 ## The required contexts
@@ -22,8 +22,9 @@
 | `shell / shellcheck` | the `shell` caller job |
 | `yaml / syntax` | the `yaml` caller job |
 | `yaml / actionlint` | the `yaml` caller job |
-| `secrets / gitleaks` | the `secrets` caller job |
 | `deps / dependency-review` | the `deps` caller job — reports on pull requests only |
+
+**Secrets is not a CI context here (2026-10-21).** The library dropped its gitleaks leaf (`my-workflows#24`): GitHub secret scanning with push protection blocks a credential before the commit lands, and GitGuardian reports on every push, so a third scanner added a required context without adding detection.
 
 ## Applying
 
