@@ -102,6 +102,25 @@ sudo aa-status | grep -E '^ +(firefox|1password)'
 sudo aa-log -s firefox       # journal; plain `aa-log` reads auditd
 ```
 
+**Tuning a denial** — `aa-logprof` reads `/var/log/audit/audit.log` first (there is no journal
+source in 4.1.8), so it needs `auditd` running:
+
+```sh
+yay -S audit
+sudo systemctl enable --now auditd.service
+```
+
+Then complain the profile, reproduce the blocked action, and let it propose rules:
+
+```sh
+sudo aa-mode -c /etc/apparmor.d/firefox.apparmor.d
+sudo aa-logprof
+```
+
+Accept into `/etc/apparmor.d/local/<name>` — every suite profile ends in
+`include if exists <local/<name>>`, so the addition survives a redeploy. `aa-logprof -a` accepts
+everything at once, which is how a strict profile becomes permissive.
+
 ## Notes
 
 - No `setenforce` equivalent: mode is per profile — `sudo aa-mode -e <name>`, `sudo aa-mode -c <name>`.
