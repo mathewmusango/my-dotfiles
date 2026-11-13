@@ -11,10 +11,10 @@ permissions:
 
 jobs:
   jsonc:
-    uses: mathewmusango/my-workflows/.github/workflows/checks-jsonc.yml@5b8c3fc7fab45a80a484b86f06d25bbf53fc0f86 # v2026.1113.0629Z
+    uses: mathewmusango/my-workflows/.github/workflows/checks-jsonc.yml@b3e68febda512c508d6cf7fd934f32a9d1cb35c9 # v2026.1113.0738Z
   python:
-    uses: mathewmusango/my-workflows/.github/workflows/checks-python.yml@5b8c3fc7fab45a80a484b86f06d25bbf53fc0f86 # v2026.1113.0629Z
+    uses: mathewmusango/my-workflows/.github/workflows/checks-python.yml@b3e68febda512c508d6cf7fd934f32a9d1cb35c9 # v2026.1113.0738Z
   shell:
-    uses: mathewmusango/my-workflows/.github/workflows/checks-shell.yml@5b8c3fc7fab45a80a484b86f06d25bbf53fc0f86 # v2026.1113.0629Z
+    uses: mathewmusango/my-workflows/.github/workflows/checks-shell.yml@b3e68febda512c508d6cf7fd934f32a9d1cb35c9 # v2026.1113.0738Z
   yaml:
-    uses: mathewmusango/my-workflows/.github/workflows/checks-yaml.yml@5b8c3fc7fab45a80a484b86f06d25bbf53fc0f86 # v2026.1113.0629Z
+    uses: mathewmusango/my-workflows/.github/workflows/checks-yaml.yml@b3e68febda512c508d6cf7fd934f32a9d1cb35c9 # v2026.1113.0738Z
