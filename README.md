@@ -1,5 +1,9 @@
 # my-dotfiles
 
+[![codeql](https://img.shields.io/github/actions/workflow/status/mathewmusango/my-dotfiles/codeql.yml?branch=main&label=codeql)](https://github.com/mathewmusango/my-dotfiles/actions/workflows/codeql.yml)
+[![dependabot](https://img.shields.io/github/actions/workflow/status/mathewmusango/my-dotfiles/dependabot%2Fdependabot-updates?branch=main&label=dependabot)](https://github.com/mathewmusango/my-dotfiles/actions/workflows/dependabot/dependabot-updates)
+[![license](https://img.shields.io/github/license/mathewmusango/my-dotfiles?label=license)](LICENSE)
+
 **Personal Arch Linux configs.** Each app is a module: config in the repo, an install
 script that copies it into place, and its own README — or, where a module only documents
 a setup, just the README.
